@@ -64,18 +64,23 @@ func (p *Poller) Add(reader *Sock) error {
 }
 
 // Remove removes a Sock from the poller
-func (p *Poller) Remove(reader *Sock) {
+func (p *Poller) Remove(reader *Sock) error {
 	numItems := len(p.socks)
 	for i := 0; i < numItems; i++ {
 		if p.socks[i] == reader {
+			rc := C.zpoller_remove(p.zpollerT, unsafe.Pointer(reader.zsockT))
+			if int(rc) == -1 {
+				return fmt.Errorf("error removing reader")
+			}
 			if i == numItems-1 {
 				p.socks = p.socks[:i]
 			} else {
 				p.socks = append(p.socks[:i], p.socks[i+1:]...)
 			}
-			return
+			return nil
 		}
 	}
+	return nil
 }
 
 // Wait waits for the timeout period in milliseconds for a Pollin
