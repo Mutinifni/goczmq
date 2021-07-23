@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	czmq "github.com/zeromq/goczmq/v4"
+	czmq "github.com/ashmrtn/goczmq/v5"
 )
 
 func main() {

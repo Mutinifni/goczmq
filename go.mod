@@ -1,5 +1,5 @@
-module github.com/zeromq/goczmq/v4
+module github.com/ashmrtn/goczmq/v5
 
-go 1.12
+go 1.16
 
 require github.com/tilinna/z85 v1.0.0
