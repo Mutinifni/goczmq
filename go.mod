@@ -1,4 +1,4 @@
-module github.com/ashmrtn/goczmq/v5
+module github.com/Mutinifni/goczmq/v5
 
 go 1.16
 
